@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    networks:
+      - internal
+    environment:
+      - DB_USER=frontend_user
+      - DB_PASS=securepass123
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"  # o el puerto que uses
+
+  trader:
+    build: ./trader
+    container_name: trader
+    networks:
+      - internal
+    environment:
+      - DB_USER=trader_user
+      - DB_PASS=securepass456
+    volumes:
+      - ./trader:/app
+
+networks:
+  internal:
+
