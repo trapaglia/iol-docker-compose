@@ -42,3 +42,20 @@ conectar a otra base de datos
 
 
 
+sudo lsblk
+sudo mkfs.ext4 -F /dev/sdb
+sudo mkdir -p /mnt/datadisco
+sudo mount /dev/sdb /mnt/datadisco
+df -h
+sudo blkid
+sudo vim /etc/fstab
+UUID="tu_UUID"  /mnt/datadisco  ext4  defaults,nofail  0  2
+
+sudo systemctl stop docker
+sudo rsync -aP /var/lib/docker/ /mnt/dockerdata/
+⚠️ Usamos rsync en lugar de mv para evitar problemas de permisos y asegurar una copia exacta.
+sudo mv /var/lib/docker /var/lib/docker.bak
+sudo ln -s /mnt/dockerdata /var/lib/docker
+sudo systemctl start docker
+docker info | grep "Docker Root Dir"
+
