@@ -16,7 +16,11 @@ RUN apt-get update && apt-get install -y \
 # Instala Elm
 RUN npm install -g elm
 
-WORKDIR /app
+# WORKDIR /app
+
+RUN useradd -m opamuser
+USER opamuser
+WORKDIR /home/opamuser
 
 CMD [ "bash" ]
 

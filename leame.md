@@ -24,6 +24,8 @@ docker compose up --build (si le agreagas -d corre en segundo plano)
 docker ps
 docker exec -it trader bash
 docker compose logs frontend
+o si ya termino
+docker logs trader
 docker compose logs -f (tiempo real)
 docker compose restart frontend
 docker compose down (apaga)
@@ -58,4 +60,17 @@ sudo mv /var/lib/docker /var/lib/docker.bak
 sudo ln -s /mnt/dockerdata /var/lib/docker
 sudo systemctl start docker
 docker info | grep "Docker Root Dir"
+
+ssh-keyscan github.com >> mis-claves-ssh/known_hosts
+
+opam init --auto-setup --disable-sandboxing
+
+apt-get update && apt-get install -y \
+  libev-dev \
+  libgmp-dev \
+  libsqlite3-dev
+
+
+TODO
+auto copy .ssh
 
